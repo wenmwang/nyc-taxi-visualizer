@@ -89,14 +89,14 @@ function ready(error, boro, matrix) {
 
   // Add a mouseover title.
   group.append("title").text(function(d, i) {
-    return boro[i].borough;
+    return boro[i].borough + ": " + (boro[i].traffic * 100).toFixed(2)+ "% of trip pickups";
   });
 
   // Add an arc for each pickup borough.
   var groupPath = group.append("path")
       .attr("id", function(d, i) { return "group" + i; })
       .attr("d", arc)
-      .style("fill", function(d, i) { return boro[i].color + ":" + boro[i].traffic + " of pickup traffic"; });
+      .style("fill", function(d, i) { return boro[i].color; });
 
   // Add a text label.
   var groupText = group.append("text")
@@ -105,7 +105,7 @@ function ready(error, boro, matrix) {
 
   groupText.append("textPath")
       .attr("xlink:href", function(d, i) { return "#group" + i; })
-      .text(function(d, i) { return boro[i].borough; })
+      .text(function(d, i) { return boro[i].borough ; })
       .attr('font-family', 'Helvetica, Arial, sans-serif')
       .attr('font-size', '14px');
 
